@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Đăng ký thành viên</title>
+        <style>
+            hr{
+                width: 1px solid black;
+            }
+            label, select{
+                margin-right: 5px;
+            }
+            input{
+                margin-left: 20px;
+            }
+            .bluebg{
+                background-color: blue;
+            }
+            .redbg{
+                background-color: red;
+            }
+            .yellowbg{
+                background-color: yellow;
+            }
+            .greenbg{
+                background-color: green;
+            }
+            .violetbg{
+                background-color: violet;
+            }
+            .button{
+                margin-left: 20px;
+            }
+            table{
+                border: 0.5px solid black;
+            }
+            .td{
+                color: white;
+                background-color: blue;
+            }
+            tr:hover{
+                background-color: yellow;
+            }   
+            #Table td{
+                border: 1px solid black;
+            }  
+        </style>
+    </head>
+    <body>
+        <h1>Đăng ký thành viên</h1>
+        <hr/>
+        <form id="registerForm">
+            <label for="name">Tên(*)</label>
+            <input type="text" id="name" name="name"/><br>
+            Ngày sinh(*)
+            <label for="day">Ngày:</label>
+            <select id="day"></select>
+            <label for="month">Tháng:</label>
+            <select id="month"></select>
+            <label for="year">Năm:</label>
+            <select id="year"></select><br>
+            Giới tính(*)
+            <input type="radio" name="gender" value="Nam" checked/>Nam
+            <input type="radio" name="gender" value="Nữ"/>Nữ<br>
+            <label for="email">Email(*)</label>
+            <input type="text" name="email" id="email"/>
+            <p></p>
+            <a>Sở thích của bạn:</a><br>
+            <input type="checkbox" name="muasam" value="Mua sắm" id="muasam"/><label>Mua sắm</label><br>
+            <input type="checkbox" name="dulich" value="Du lịch"/>Du lịch<br>
+            <input type="checkbox" name="tangau" value="Tán gẫu"/>Tán gẫu<br>
+            <input type="checkbox" name="docsach" value="Đọc sách"/>Đọc sách<br>
+            <input type="checkbox" name="nghenhac" value="Nghe nhạc"/>Nghe nhạc<br>
+            <a>Màu yêu thích của bạn</a><br>
+            <input type="radio" name="color" value="Màu xanh da trời"/><label class="bluebg">Màu xanh da trời</label><br>
+            <input type="radio" name="color" value="Màu đỏ"/><label class="redbg">Màu đỏ</label><br>
+            <input type="radio" name="color" value="Màu vàng"/><label class="yellowbg">Màu vàng</label><br>
+            <input type="radio" name="color" value="Màu xanh lá cây"/><label class="greenbg">Màu xanh lá cây</label><br>
+            <input type="radio" name="color" value="Màu xanh tím"/><label class="violetbg">Màu xanh tím</label>
+            <p></p>
+            <button class="button" type="button" onclick="Register()">Đăng ký</button>
+            <button type="button" onclick="Continue()">Tiếp</button>
+            <p></p>
+            <table id="Table">
+                <td class="td">Tên</td>
+                <td class="td">Email</td>
+                <td class="td">Giới tính</td>
+                <td class="td">Năm sinh</td>
+                <td class="td">Sở thích</td>
+                <td class="td">Màu yêu thích</td>
+            </table>
+        </form>
+        <script src="index.js"></script>
+    </body>
+</html>
