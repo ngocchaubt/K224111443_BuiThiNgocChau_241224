@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>Travel Expense Report</title>
+    </head>
+    <body style="background-color: #ccffff;">
+        <center>
+            <img src="DeLong.jpg">
+        </center>
+        <h2>Travel Expense Report</h2>
+        <hr height="2px" color="black"/>
+        <form>
+        <p>
+            1) First Name: 
+            <input type="text" name="fname" required/>
+            Last Name:
+            <input type="text" name="lname" required/>
+        </p>
+        <p>
+            2) Social Secutiry Number:
+            <input type="text" name="securitynumber" size="10px" required/>
+        </p>
+        <p>
+            3) Department
+            <select name="department" required>
+                <option value="accounting" selected>Accounting</option>
+                <option value="hr">Human Resources</option>
+            </select>
+        </p>
+        <p>4) Describe the purpose of your trip:</p>
+        <textarea cols="70" rows="6" required></textarea>
+        <p>5) Itermize yout travel expenses</p>
+        <table border="1">
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td><input type="date" name="date"/></td>
+                <td><input style="margin-left: 50px; margin-right: 50px;" type="text" name="desctiption"/></td>
+                <td>
+                    <select style="width: 100px;" name="category">
+                        <option value="meal" selected>Meal</option>
+                    </select>
+                </td>
+                <td><input style="width: 80px; margin-left: 15px; margin-right: 15px;" type="text" name="amount"/></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="date"/></td>
+                <td><input style="margin-left: 50px; margin-right: 50px;" type="text" name="desctiption"/></td>
+                <td>
+                    <select style="width: 100px;" name="category">
+                        <option value="meal" selected>Meal</option>
+                    </select>
+                </td>
+                <td><input style="width: 80px; margin-left: 15px; margin-right: 15px;" type="text" name="amount"/></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="date"/></td>
+                <td><input style="margin-left: 50px; margin-right: 50px;" type="text" name="desctiption"/></td>
+                <td>
+                    <select style="width: 100px;" name="category">
+                        <option value="meal" selected>Meal</option>
+                    </select>
+                </td>
+                <td><input style="width: 80px; margin-left: 15px; margin-right: 15px;" type="text" name="amount"/></td>
+            </tr>
+            <tr>
+                <td><input type="date" name="date"/></td>
+                <td><input style="margin-left: 50px; margin-right: 50px;" type="text" name="desctiption"/></td>
+                <td>
+                    <select style="width: 100px;" name="category">
+                        <option value="meal" selected>Meal</option>
+                    </select>
+                </td>
+                <td><input style="width: 80px; margin-left: 15px; margin-right: 15px;" type="text" name="amount"/></td>
+            </tr>
+        </table>
+        <p>
+            6) Have you submitted your recepts
+            <input type="radio" name="submitreceipt" value="yes"/>Yes
+            <input type="radio" name="submitreceipt" value="no"/>No
+        </p>
+        <input type="submit" name="submit" value="Submit travel expenses" onclick="alert('Successfully submitted')"/>
+        <input type="reset" name="reset" value="Reset"/>
+        <p>Question? Contact Debbie Larson in Accounting (ext.2150)</p>
+        </form>
+    </body>
+</html>
