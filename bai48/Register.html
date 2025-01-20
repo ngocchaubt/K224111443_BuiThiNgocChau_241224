@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+    <body style="background-color: #99ccff;border-color: #99ccff;border-style: solid;">
+        <center>
+            <img src="hinh/Jackson.gif">
+            <h1>Registration Form</h1>
+            <p>Register your Jackson Electronics product here</p>
+            <form>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="fname">First Name:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="fname" name="fname"/>
+                            <label for="lname">Last Name:</label>
+                            <input type="text" id="lname" name="lname"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="address1">Address #1:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="address1" name="address1" size="35"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="address2">Address #2:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="address2" name="address2" size="35"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="city">City:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="city" name="city" size="25"/>
+                            <label for="state">State:</label>
+                            <input type="text" id="state" name="state" size="5"/>
+                            <label for="zip">Zip:</label>
+                            <input type="text" id="zip" name="zip" size="10"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Country:
+                        </td>
+                        <td>
+                            <input type="text" value="United States" name="acountry" size="25"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr height="3" width="700" color="darkorange"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="product">Product:</label>
+                        </td>
+                        <td>
+                            <select id="product" name="product">
+                                <option value="ScanMaster">ScanMaster</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                         <td>
+                            <label for="datepurchased">Date Purchased:</label>
+                         </td>
+                         <td>
+                            <input type="text" id="datepurchased" name="datepurchased" size="25">
+                         </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <label for="serial">Serial #:</label>
+                        </td>
+                        <td>
+                           <input type="text" id="serial" name="serial" size="25">
+                        </td>
+                   </tr>
+                   <tr>
+                        <td rowspan="3">
+                            Used for:
+                        </td>
+                        <td>
+                            <label style="margin-right: 130px;"><input type="radio" name="usedFor" value="Home" required> Home</label>
+                            <label><input type="radio" name="usedFor" value="Educational Institution"> Educational Institution</label>
+                        </td>
+                   </tr>
+                   <tr>
+                        <td>
+                            <label style="margin-right: 112px;"><input type="radio" name="usedFor" value="Business"> Business</label>
+                            <label><input type="radio" name="usedFor" value="Other"> Other</label>
+                        </td>
+                   </tr>
+                   <tr>
+                        <td>
+                            <label><input type="radio" name="usedFor" value="Government"> Government</label>
+                        </td>
+                   </tr>
+                   <tr>
+                        <td rowspan="2" ali>
+                            System (check all that apply):  
+                        </td>
+                        <td>
+                            <label style="margin-right: 110px";><input type="checkbox" name="system" value="Windows"> Windows</label>
+                            <label><input type="checkbox" name="system" value="UNIX"> UNIX</label>
+                        </td>
+                   </tr>
+                   <tr>
+                        <td>
+                            <label style="margin-right: 103px";><input type="checkbox" name="system" value="Macintosh"> Macintosh</label>
+                            <label><input type="checkbox" name="system" value="Other"> Other</label>
+                        </td>
+                   </tr>
+                   <tr>
+                    <td colspan="2">
+                        <hr height="3" width="700" color="darkorange"/>
+                    </td>
+                </tr>
+                   <tr>
+                        <td>
+                            <label for="comments">Comments?</label>
+                        </td>
+                        <td>
+                            <textarea id="comments" name="comments" rows="5" cols="50">
+
+                            </textarea>
+                        </td>
+                   </tr>
+                </table>
+                <div>
+                    <input type="submit" onclick="register()" value="Click to Register">
+                    <input type="reset" value="Click to cancel">
+                </div>
+            </form>
+            <script>
+                function register() {
+                    alert("Đăng ký thành công!");
+                }
+            </script>
+        </center>
+    </body>
+</html>
