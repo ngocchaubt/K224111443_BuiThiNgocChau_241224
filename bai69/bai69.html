@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Data</h1>
+    
+    <label for="titleDropdown">Chọn Title: </label>
+    <select id="titleDropdown" onchange="filterEmployees()">
+        <option value="">-- Chọn Title --</option>
+    </select>
+
+    <br><br>
+
+    <table id="employeeTable">
+        <thead>
+            <tr>
+                <th>Mã Employee</th>
+                <th>Tên Employee</th>
+                <th>Phone Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dữ liệu sẽ được thêm động -->
+        </tbody>
+    </table>
+
+    <script>
+        let employeesData = []; // Dữ liệu employees từ XML
+
+        // Hàm tải dữ liệu từ file XML
+        function loadXMLData() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "data.xml", true); // Đọc file XML (file cần để cùng thư mục)
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const xmlDoc = xhr.responseXML;
+                    parseXMLData(xmlDoc);
+                }
+            };
+            xhr.send();
+        }
+
+        // Hàm phân tích và xử lý dữ liệu từ XML
+        function parseXMLData(xmlDoc) {
+            const employees = xmlDoc.getElementsByTagName("employee");
+            const titles = new Set(); // Tập hợp các title không trùng nhau
+
+            // Duyệt qua từng employee trong XML
+            for (let i = 0; i < employees.length; i++) {
+                const id = employees[i].getAttribute("id");
+                const title = employees[i].getAttribute("title");
+                const name = employees[i].getElementsByTagName("name")[0].textContent;
+                const phone = employees[i].getElementsByTagName("phone")[0].textContent;
+
+                // Lưu trữ dữ liệu employee
+                employeesData.push({ id, title, name, phone });
+
+                // Thêm title vào tập hợp
+                titles.add(title);
+            }
+
+            // Hiển thị các title vào Dropdown
+            const titleDropdown = document.getElementById("titleDropdown");
+            titles.forEach((title) => {
+                const option = document.createElement("option");
+                option.value = title;
+                option.textContent = title;
+                titleDropdown.appendChild(option);
+            });
+        }
+
+        // Hàm lọc dữ liệu employee theo title được chọn
+        function filterEmployees() {
+            const selectedTitle = document.getElementById("titleDropdown").value;
+            const tableBody = document.getElementById("employeeTable").getElementsByTagName("tbody")[0];
+
+            // Xóa nội dung cũ trong bảng
+            tableBody.innerHTML = "";
+
+            // Lọc danh sách employee theo title
+            const filteredEmployees = employeesData.filter((employee) => employee.title === selectedTitle);
+
+            // Hiển thị dữ liệu trong bảng
+            filteredEmployees.forEach((employee) => {
+                const row = document.createElement("tr");
+
+                const cellId = document.createElement("td");
+                cellId.textContent = employee.id;
+                row.appendChild(cellId);
+
+                const cellName = document.createElement("td");
+                cellName.textContent = employee.name;
+                row.appendChild(cellName);
+
+                const cellPhone = document.createElement("td");
+                cellPhone.textContent = employee.phone;
+                row.appendChild(cellPhone);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Gọi hàm load dữ liệu khi trang được tải
+        document.addEventListener("DOMContentLoaded", loadXMLData);
+    </script>
+</body>
+</html>

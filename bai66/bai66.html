@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>XML-Dom Parser</title>
+        <style>
+            td:hover{
+                background-color: blue;
+                color: white;
+            }
+        </style>
+        <script>
+            var txt = "<sinhvien>";
+                txt += "<mssv>K123456789</mssv>";
+                txt += "<hoTen>Quách Thị Bán Bún Bò</hoTen>";
+                txt += "<ngaySinh>7/7/1997</ngaySinh>";
+                txt += "<gioiTinh>Nữ</gioiTinh>";
+                txt += "</sinhvien>"
+        </script>
+        <script>
+            function taidssv() //bấm tải sách sẽ truy xuất sách lên//
+            {
+                var parser = new DOMParser(); 
+                var xmlDoc = parser.parseFromString(txt,"text/xml"); 
+                mssv=xmlDoc.getElementsByTagName("mssv")[0].childNodes[0].nodeValue;
+                hoTen=xmlDoc.getElementsByTagName("hoTen")[0].childNodes[0].nodeValue;
+                ngaySinh=xmlDoc.getElementsByTagName("ngaySinh")[0].childNodes[0].nodeValue;
+                gioiTinh=xmlDoc.getElementsByTagName("gioiTinh")[0].childNodes[0].nodeValue;
+                document.getElementById("mssv").innerText=mssv
+                document.getElementById("hoTen").innerText=hoTen
+                document.getElementById("ngaySinh").innerText=ngaySinh
+                document.getElementById("gioiTinh").innerText=gioiTinh
+            }
+        </script>
+    </head>
+    <body>
+        <h3>Danh sách các sinh viên</h3>
+        <table border="1">
+            <tr>
+                <th style="background-color: orange;" colspan="2">Chi tiết thông tin sinh viên</th>
+            </tr>
+            <tr>
+                <td>Mã Sinh Viên:</td>
+                <td id="mssv"></td>
+            </tr>
+            <tr>
+                <td>Họ Tên:</td>
+                <td id="hoTen"></td>
+            </tr>
+            <tr>
+                <td>Ngày Sinh:</td>
+                <td id="ngaySinh"></td>
+            </tr>
+            <tr>
+                <td>Giới Tính:</td>
+                <td id="gioiTinh"></td>
+            </tr>
+        </table>
+        <button onclick="taidssv()">Tải DSSV</button>
+    </body>
+</html>

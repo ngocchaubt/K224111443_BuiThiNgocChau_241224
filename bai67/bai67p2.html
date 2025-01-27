@@ -1,0 +1,145 @@
+<html>
+<head>
+    <title>DOM single XML</title>
+
+    <script type="text/javascript">
+        //The two approaches (+= or = ++++) are functionally equivalent, leading to the same final XML string
+        var dataset = "<sinhviens>";
+                dataset += "<sinhvien>";
+                    dataset += "<mssv>K123456789</mssv>";
+                    dataset += "<hoTen>Quách Thị Bán Bún Bò</hoTen>";
+                    dataset += "<ngaySinh>7/7/1997</ngaySinh>";
+                    dataset += "<gioiTinh>Nữ</gioiTinh>";
+                dataset += "</sinhvien>";
+                    dataset += "<sinhvien>";
+                    dataset += "<mssv>K12345000</mssv>";
+                    dataset += "<hoTen>Hồng Lâu Mộng</hoTen>";
+                    dataset += "<ngaySinh>2/2/1992</ngaySinh>";
+                    dataset += "<gioiTinh>Nam</gioiTinh>";
+                dataset += "</sinhvien>";
+                    dataset += "<sinhvien>";
+                    dataset += "<mssv>K1674000</mssv>";
+                    dataset += "<hoTen>Hồ Văn Đồ</hoTen>";
+                    dataset += "<ngaySinh>2/7/1997</ngaySinh>";
+                    dataset += "<gioiTinh>Nam</gioiTinh>";
+                dataset += "</sinhvien>";
+            dataset += "</sinhviens>";
+    </script>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        .tr1{
+            background-color: orange;
+        }
+        .tr2{
+            background-color: rgb(8, 144, 8);
+            color: white;
+        }
+    </style>
+    <script>
+        
+    </script>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr class="tr1">
+                <th colspan="4">
+                    Danh sách Sinh Viên
+                </th>
+            <tr class="tr2">
+                <th onclick="sapXepCot(0)">Mã Sinh Viên</th>
+                <th onclick="sapXepCot(1)">Họ Tên</th>
+                <th onclick="sapXepCot(2)">Ngày Sinh</th>
+                <th onclick="sapXepCot(3)">Giới Tính</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="tbodysinhvien">
+
+        </tbody>
+    </table>
+
+    <script>
+        function tai_ds_sv()
+        {
+            //B1 Nạp mô hình XML DOM
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(dataset, 'text/xml');
+
+            //B2 Lấy toàn bộ thẻ students của dataset
+            students = xmlDoc.getElementsByTagName('sinhvien')
+            
+            for(i=0; i<students.length; i++)
+            {
+                //B3.1 Lấy thẻ sinhvien thứ i
+                st_i = students[i]
+                mssv = st_i.getElementsByTagName('mssv')[0].childNodes[0].nodeValue
+                hoTen = st_i.getElementsByTagName('hoTen')[0].childNodes[0].nodeValue
+                ngaySinh = st_i.getElementsByTagName('ngaySinh')[0].childNodes[0].nodeValue
+                gioiTinh = st_i.getElementsByTagName('gioiTinh')[0].childNodes[0].nodeValue
+            
+                //B3.2 Xử lý HTML DOM đưa dữ liệu từ XML lên HTML giao diện
+                tbodysinhvien = document.getElementById('tbodysinhvien')
+                
+                tr = document.createElement('tr')
+
+                tbodysinhvien.appendChild(tr)
+                tr.onclick = function () {
+                    xemThongTin(mssv, hoTen, ngaySinh, gioiTinh);}
+
+                tdmssv = document.createElement('td')
+                tdmssv.innerText = mssv
+                tr.appendChild(tdmssv)
+
+                tdhoTen = document.createElement('td')
+                tdhoTen.innerText = hoTen
+                tr.appendChild(tdhoTen)
+
+                tdngaySinh = document.createElement('td')
+                tdngaySinh.innerText = ngaySinh
+                tr.appendChild(tdngaySinh)
+
+                tdgioiTinh = document.createElement('td')
+                tdgioiTinh.innerText = gioiTinh
+                tr.appendChild(tdgioiTinh)
+
+
+            }
+        }
+
+        tai_ds_sv() //must have parenthesis
+
+        function sapXepCot(index) {
+            var table = document.getElementById("tbodysinhvien");
+            var rows = Array.from(table.rows);
+            var ascending = table.getAttribute("data-sort") === "asc";
+            rows.sort(function(a, b) {
+                var valA = a.cells[index].innerText;
+                var valB = b.cells[index].innerText;
+                return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
+            });
+            rows.forEach(row => table.appendChild(row));
+            table.setAttribute("data-sort", ascending ? "desc" : "asc");
+        }
+
+        function xemThongTin(mssv, hoTen, ngaySinh, gioiTinh) {
+            const detailWindow = window.open("", "_blank", "width=400,height=300");
+            detailWindow.document.write(`
+                <h2>Chi tiết thông tin Sinh Viên</h2>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+                    <tr><th>Mã Sinh Viên</th><td>${mssv}</td></tr>
+                    <tr><th>Họ Tên</th><td>${hoTen}</td></tr>
+                    <tr><th>Ngày Sinh</th><td>${ngaySinh}</td></tr>
+                    <tr><th>Giới Tính</th><td>${gioiTinh}</td></tr>
+                </table>
+            `);
+        }
+    </script>
+</body>
+
+</html>
